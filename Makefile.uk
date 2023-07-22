@@ -1,0 +1,91 @@
+# SPDX-License-Identifier: BSD-3-Clause
+
+# nil
+
+#
+# Authors: Md Sahil &lt;Mohdssahil13@gmail.com>
+#
+# Copyright (c) 2023, Md Sahil. All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+#
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. Neither the name of the copyright holder nor the names of its
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+# POSSIBILITY OF SUCH DAMAGE.
+
+################################################################################
+# Library registration
+################################################################################
+$(eval $(call addlib_s,libsample14,$(CONFIG_LIBSAMPLE14)))
+
+################################################################################
+# Sources
+################################################################################]
+
+LIBSAMPLE14_COMMIT = Initial commit (blank)
+
+
+LIBSAMPLE14_VERSION = 1.0.0
+
+LIBSAMPLE14_URL = https://github.com/MdSahil-oss/kraftkit-test
+LIBSAMPLE14_SUBDIR = sample-14-$(LIBSAMPLE14_VERSION)
+
+$(eval $(call fetch,libsample14,$(LIBSAMPLE14_URL)))
+
+################################################################################
+# Helpers
+################################################################################
+LIBSAMPLE14_SRC = $(LIBSAMPLE14_ORIGIN)/$(LIBSAMPLE14_SUBDIR)
+
+################################################################################
+# Library includes
+################################################################################
+CINCLUDES-y += -I$(LIBSAMPLE14_BASE)/include
+
+################################################################################
+# Flags
+################################################################################
+LIBSAMPLE14_FLAGS =
+
+# Suppress some warnings to make the build process look neater
+LIBSAMPLE14_FLAGS_SUPPRESS =
+
+LIBSAMPLE14_CFLAGS-y += $(LIBSAMPLE14_FLAGS)
+LIBSAMPLE14_CFLAGS-y += $(LIBSAMPLE14_FLAGS_SUPPRESS)
+
+################################################################################
+# Glue code
+################################################################################
+# Include paths
+# LIBSAMPLE14_CINCLUDES-y   += $(LIBSAMPLE14_COMMON_INCLUDES-y)
+# LIBSAMPLE14_CXXINCLUDES-y += $(LIBSAMPLE14_COMMON_INCLUDES-y)
+
+
+LIBSAMPLE14SRCS-$(CONFIG_LIBSAMPLE14_MAIN_FUNCTION) += $(LIBSAMPLE14_BASE)/main.c|unikraft
+
+
+################################################################################
+# Library sources
+################################################################################
+# LIBSAMPLE14_SRCS-y += # Include source files here
+
+

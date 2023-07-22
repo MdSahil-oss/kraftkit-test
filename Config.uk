@@ -1,0 +1,7 @@
+menuconfig libsample14
+	bool "nil"
+	default n
+
+config libsample14_MAIN_FUNCTION
+	bool "Provide main function"
+	default n
